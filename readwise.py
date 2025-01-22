@@ -74,7 +74,14 @@ class Readwise:
 			hl.title = title
 		hl.note = self.convert_tags_to_note(memo['tags'])
 		hl.highlight_url = memo['flomo_url']
-		hl.highlighted_at = self.convert_memotime_to_iso8601(memo['edit_time'])
+		created_at = memo['created_time']
+		if isinstance(created_at, datetime):
+			# 将 datetime 对象转换为 ISO 8601 格式的字符串
+			hl.highlighted_at = created_at.isoformat()
+		else:
+			# 如果已经是字符串，则直接使用
+			hl.highlighted_at = created_at
+
 		hl.source_type = 'flomo-Notion'
 		return hl.get_dict()
 
@@ -88,5 +95,5 @@ class Readwise:
 
 	def sort_highlights_by_time(self, highlights: List[Dict]) -> List[Dict]:
 		# time format: 'YYYY-MM-DDTHH:MM:SS+00:00'
-		highlights.sort(key=lambda x: datetime.fromisoformat(x['highlighted_at']))
+		highlights.sort(key=lambda x: x['highlighted_at'])
 		return highlights

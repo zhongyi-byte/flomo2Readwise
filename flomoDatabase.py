@@ -1,6 +1,7 @@
 from notion_client import Client
 from datetime import datetime
 from tenacity import retry, wait_exponential, stop_after_attempt
+import pytz
 
 class FlomoDatabase:
 	def __init__(self, api_key, database_id, logger, update_tags=True, skip_tags=['', 'welcome']):
@@ -16,12 +17,19 @@ class FlomoDatabase:
 		## get 100 pages at a time
 		result_list = self.notion.databases.query(self.database_id)
 		while result_list:
-			## save content of each page
+			# Save content of each page
 			for page in result_list['results']:
 				flomo_memo = self.fetch_flomo_memo(page, last_sync_time=last_sync_time)
 				if flomo_memo:
 					all_memos.append(flomo_memo)
-			## get next 100 pages, until no more pages
+
+			# Check the last page's last_edited_time
+			if last_sync_time:
+				last_page_created_time = self.parse_created_time(result_list['results'][-1]['created_time'])
+				if last_page_created_time < last_sync_time:
+					break
+
+			# Get next 100 pages, until no more pages
 			if "next_cursor" in result_list and result_list["next_cursor"]:
 				result_list = self.notion.databases.query(self.database_id, start_cursor=result_list["next_cursor"])
 			else:
@@ -31,9 +39,9 @@ class FlomoDatabase:
 	@retry(wait=wait_exponential(multiplier=1, min=4, max=10), stop=stop_after_attempt(5))
 	def fetch_flomo_memo(self, page, last_sync_time=None):
 		# Skip pages edited before last_sync_time
-		last_edit_time_str = page['last_edited_time'] # format: '2023-04-17T00:00:00.000Z' and it's UTC time
-		last_edit_time = datetime.strptime(last_edit_time_str, '%Y-%m-%dT%H:%M:%S.%fZ')
-		if last_sync_time and last_edit_time < last_sync_time:
+		created_time = self.parse_created_time(page['created_time'])
+		last_edit_time = self.parse_created_time(page['last_edited_time'])
+		if last_sync_time and created_time < last_sync_time:
 			return None
 
 		# Get tags, which are separated by slash in flomo
@@ -55,14 +63,11 @@ class FlomoDatabase:
 		flomo_memo = {
 			'tags':			tags,
 			'flomo_url':	page['properties']['Link']['url'],
-			'edit_time':	last_edit_time_str,
+			'created_time': created_time,
+			'edit_time':	last_edit_time,
 			'text':			text_content
 		}
 
-		if "得到" in tags:
-			memo = self.parse_dedao_content(tags, text_content)
-			flomo_memo.update(memo)
-		
 		if flomo_memo['text'] == '':
 			return None
 
@@ -115,36 +120,17 @@ class FlomoDatabase:
 		}
 		# Update the database schema
 		self.notion.databases.update(self.database_id, properties=properties)
-	
-	def parse_dedao_content(self, tags, text):
-		all_tags = '_'.join(tags)
-		# category
-		category = None
-		if '电子书' in all_tags:	category = 'books'
-		elif '课程' in all_tags:	category = 'podcasts'
-		elif '其他' in all_tags:	category = 'podcasts'
-		elif '城邦' in all_tags:	category = 'tweets'
-		# author
-		author = None
-		author_list = ['万维钢', '卓克', '刘擎', '刘嘉', '何帆', '吴军', '刘润',
-						'薛兆丰', '林楚方', '徐弃郁', '施展', '王立铭', '薄世宁',
-						'王煜全', '香帅', '冯雪', '贾宁', '李筠', '梁宁', '刘苏里']
-		if category == 'podcasts':
-			for author_name in author_list:
-				if author_name in all_tags:
-					author = author_name
-					break
-		# text
-		# remove the first line, which is tags
-		# remove the last two lines, which is "来源：https://dedao.cn"
-		text = text.split('\n')
-		title = text[0].split('/')[-1]
-		text = text[1:-2]
-		text = '\n'.join(text)
-		# return as a dict
-		return {
-			'text': text,
-			'title': title,
-			'author': author,
-			'category': category
-		}
+
+	def parse_created_time(self, created_time_str):
+		# 解析 UTC 时间字符串
+		utc_time = datetime.strptime(created_time_str, '%Y-%m-%dT%H:%M:%S.%fZ')
+
+		# 设置 UTC 时区
+		utc_timezone = pytz.utc
+		utc_time = utc_timezone.localize(utc_time)
+
+		# 转换为上海时区
+		shanghai_timezone = pytz.timezone('Asia/Shanghai')
+		shanghai_time = utc_time.astimezone(shanghai_timezone)
+
+		return shanghai_time
