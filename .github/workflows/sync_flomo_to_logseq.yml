@@ -1,5 +1,5 @@
 
-name: Sync flomo from Notion database to Readwise
+name: Sync flomo from Notion database to Logseq Github
 
 on:
   # push:
