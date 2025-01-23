@@ -54,7 +54,7 @@ def update_last_sync_time():
 
     # 保存上海时间
     with open(last_sync_time_file, 'w') as f:
-        f.write(update_time_shanghai.strftime("%Y-%m-%d %H:%M:%S"))
+        f.write(update_time_shanghai.strftime("%Y-%m-%d %H:%M:%S") + '+08:00')
 
     # 返回上海时间字符串
-    return update_time_shanghai.strftime("%Y-%m-%d %H:%M:%S")
+    return update_time_shanghai.strftime("%Y-%m-%d %H:%M:%S") + '+08:00'

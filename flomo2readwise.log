@@ -94,3 +94,27 @@
 2025-01-23 19:11:02.081 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
 2025-01-23 19:12:20.226 | INFO     | logger:log:13 - Number of flomo memos to sync: 75
 2025-01-23 19:12:20.226 | INFO     | logger:log:13 - Number of flomo memos to sync: 75
+2025-01-23 20:49:52.948 | INFO     | logger:log:13 - Last sync time: 2025-01-19 15:32:00+08:00
+2025-01-23 20:49:52.948 | INFO     | logger:log:13 - Last sync time: 2025-01-19 15:32:00+08:00
+2025-01-23 20:50:00.614 | INFO     | logger:log:13 - Last sync time: 2025-01-19 15:32:00+08:00
+2025-01-23 20:50:00.614 | INFO     | logger:log:13 - Last sync time: 2025-01-19 15:32:00+08:00
+2025-01-23 20:50:20.432 | INFO     | logger:log:13 - Number of flomo memos to sync: 30
+2025-01-23 20:50:20.432 | INFO     | logger:log:13 - Number of flomo memos to sync: 30
+2025-01-23 20:50:24.843 | INFO     | logger:log:13 - Successfully added 2025_01_23.md to GitHub.
+2025-01-23 20:50:24.843 | INFO     | logger:log:13 - Successfully added 2025_01_23.md to GitHub.
+2025-01-23 20:53:44.521 | INFO     | logger:log:13 - Successfully appended content to 2025_01_22.md on GitHub.
+2025-01-23 20:53:44.521 | INFO     | logger:log:13 - Successfully appended content to 2025_01_22.md on GitHub.
+2025-01-23 20:55:01.660 | INFO     | logger:log:13 - Successfully appended content to 2025_01_21.md on GitHub.
+2025-01-23 20:55:01.660 | INFO     | logger:log:13 - Successfully appended content to 2025_01_21.md on GitHub.
+2025-01-23 20:55:04.848 | INFO     | logger:log:13 - Successfully added 2025_01_20.md to GitHub.
+2025-01-23 20:55:04.848 | INFO     | logger:log:13 - Successfully added 2025_01_20.md to GitHub.
+2025-01-23 20:55:21.814 | INFO     | logger:log:13 - Successfully appended content to 2025_01_19.md on GitHub.
+2025-01-23 20:55:21.814 | INFO     | logger:log:13 - Successfully appended content to 2025_01_19.md on GitHub.
+2025-01-23 20:55:25.922 | INFO     | logger:log:13 - Finished syncing flomo memos to Github
+2025-01-23 20:55:25.922 | INFO     | logger:log:13 - Finished syncing flomo memos to Github
+2025-01-23 20:55:25.925 | INFO     | logger:log:13 - Update last sync time: 2025-01-23 20:55:25
+2025-01-23 20:55:25.925 | INFO     | logger:log:13 - Update last sync time: 2025-01-23 20:55:25
+2025-01-23 20:55:25.926 | INFO     | logger:log:13 - Finished
+2025-01-23 20:55:25.926 | INFO     | logger:log:13 - Finished
+2025-01-23 20:55:25.926 | INFO     | logger:log:13 - 
+2025-01-23 20:55:25.926 | INFO     | logger:log:13 - 
