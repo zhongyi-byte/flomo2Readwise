@@ -20,7 +20,6 @@ logger = loguru_logger('flomo2logseq')
 # Logseq 日志目录
 logseq_directory = "journals"
 
-# 获取当天的日期
 # 获取上海时区
 shanghai_timezone = pytz.timezone('Asia/Shanghai')
 
@@ -32,35 +31,64 @@ today = current_time.strftime("%Y_%m_%d")
 # 获取 flomo_memos 的内容，假设你已经从 Notion 拉取了 flomo_memos
 # flomo_memos = flomo_database.fetch_flomo_memos(last_sync_time=start_of_day)
 
+def group_memos_by_date(flomo_memos):
+    """
+    将 flomo_memos 按照 'created_time' 分组，确保每个日期的笔记被放到对应的文件中
+    """
+    grouped_memos = {}
 
-def convert_to_logseq_content(flomo_memos):
-    content = ""
     for memo in flomo_memos:
-        text = memo['text']
+        created_time = memo['created_time']
+        # 提取日期，格式化为 YYYY_MM_DD
+        memo_date = created_time.strftime("%Y_%m_%d")
 
-        # 构建 Logseq 内容格式
-        logseq_entry = "- ---\n"
-        logseq_entry += f"- {text}\n"  # 添加笔记内容
+        if memo_date not in grouped_memos:
+            grouped_memos[memo_date] = []
 
-        content += logseq_entry
+        grouped_memos[memo_date].append(memo)
 
-    return content
+    return grouped_memos
+
+def convert_to_logseq_content(grouped_memos):
+    """
+    将按日期分组的笔记转换为 Logseq 格式
+    """
+    all_content = {}
+
+    for date, memos in grouped_memos.items():
+        content = ""
+        for memo in memos:
+            text = memo['text']
+            # 构建 Logseq 内容格式
+            logseq_entry = "- ---\n"
+            logseq_entry += f"- {text}\n"  # 添加笔记内容
+
+            content += logseq_entry
+
+        # 保存按日期生成的内容
+        all_content[date] = content
+
+    return all_content
 
 
 def push_to_github(content):
-    # 文件路径：确保它指向 `journals` 文件夹，并且使用当前日期作为文件名
-    file_name = f"{today}.md"
-    file_path = f"{logseq_directory}/{file_name}"
+    """
+    将 Logseq 格式的笔记推送到 GitHub
+    """
+    for date, date_content in content.items():
+        # 文件路径：确保它指向 `journals` 文件夹，并且使用日期作为文件名
+        file_name = f"{date}.md"
+        file_path = f"{logseq_directory}/{file_name}"
 
-    try:
-        # 如果文件不存在，创建文件并推送
-        repo.create_file(file_path, f"Add {file_name}", content, branch="main")
-        print(f"Successfully added {file_name} to GitHub.")
-    except Exception as e:
-        # 如果文件已存在，更新文件内容
-        existing_file = repo.get_contents(file_path, ref="main")
-        repo.update_file(existing_file.path, f"Update {file_name}", content, existing_file.sha, branch="main")
-        print(f"Successfully updated {file_name} on GitHub.")
+        try:
+            # 如果文件不存在，创建文件并推送
+            repo.create_file(file_path, f"Add {file_name}", date_content, branch="main")
+            print(f"Successfully added {file_name} to GitHub.")
+        except Exception as e:
+            # 如果文件已存在，更新文件内容
+            existing_file = repo.get_contents(file_path, ref="main")
+            repo.update_file(existing_file.path, f"Update {file_name}", date_content, existing_file.sha, branch="main")
+            print(f"Successfully updated {file_name} on GitHub.")
 
 
 def sync_flomo_to_github():
@@ -77,8 +105,11 @@ def sync_flomo_to_github():
     logger.log('Number of flomo memos to sync:', len(flomo_memos))
 
     if len(flomo_memos) > 0:
-        # Sync flomo memos to Github logseq
-        content = convert_to_logseq_content(flomo_memos)
+        # 按日期分组笔记
+        grouped_memos = group_memos_by_date(flomo_memos)
+        # 转换为 Logseq 格式的内容
+        content = convert_to_logseq_content(grouped_memos)
+        # 推送到 GitHub
         push_to_github(content)
         logger.log('Finished syncing flomo memos to Github')
     else:

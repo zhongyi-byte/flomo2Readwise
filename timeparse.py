@@ -26,6 +26,7 @@ def parse_created_time(created_time_str):
 
     return shanghai_time
 
+
 def get_last_sync_time():
     if not os.path.exists(last_sync_time_file):
         return None
@@ -42,8 +43,18 @@ def get_last_sync_time():
 
         return time
 
+
 def update_last_sync_time():
-    update_time = datetime.now()  # UTC time on Github Actions
+    # 获取当前时间（UTC时间）
+    update_time = datetime.now(pytz.utc)  # 获取 UTC 时间
+
+    # 转换为上海时间
+    shanghai_timezone = pytz.timezone('Asia/Shanghai')
+    update_time_shanghai = update_time.astimezone(shanghai_timezone)
+
+    # 保存上海时间
     with open(last_sync_time_file, 'w') as f:
-        f.write(parse_created_time(str(update_time)))
-    return parse_created_time(str(update_time))
+        f.write(update_time_shanghai.strftime("%Y-%m-%d %H:%M:%S"))
+
+    # 返回上海时间字符串
+    return update_time_shanghai.strftime("%Y-%m-%d %H:%M:%S")

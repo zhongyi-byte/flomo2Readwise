@@ -45,11 +45,6 @@ class FlomoDatabase:
 
 		# Get tags, which are separated by slash in flomo
 		tags = self.fetch_and_seperate_tags(page)
-		for skip_tag in self.skip_tags:
-			if skip_tag=='' and len(tags)==0:
-				return None
-			if skip_tag in tags:
-				return None
 
 		# Store seperated tags as a new Multi-select property in Notion
 		if self.update_tags:

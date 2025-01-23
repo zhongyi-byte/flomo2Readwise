@@ -74,3 +74,23 @@
 2025-01-23 15:35:28.225 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
 2025-01-23 15:36:27.238 | INFO     | logger:log:13 - Finished syncing flomo memos to Github
 2025-01-23 15:36:27.238 | INFO     | logger:log:13 - Finished syncing flomo memos to Github
+2025-01-23 16:02:14.039 | INFO     | logger:log:13 - First sync
+2025-01-23 16:02:14.039 | INFO     | logger:log:13 - First sync
+2025-01-23 16:03:17.032 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 16:03:17.032 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 16:04:16.251 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 16:04:16.251 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 18:54:25.465 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 18:54:25.465 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 18:54:46.369 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 18:54:46.369 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 19:04:14.418 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 19:04:14.418 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 19:04:40.084 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 19:04:40.084 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 19:06:46.596 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 19:06:46.596 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 19:11:02.081 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 19:11:02.081 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 19:12:20.226 | INFO     | logger:log:13 - Number of flomo memos to sync: 75
+2025-01-23 19:12:20.226 | INFO     | logger:log:13 - Number of flomo memos to sync: 75
