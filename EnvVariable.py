@@ -1,0 +1,10 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+NOTION_INTEGRATION_TOKEN = os.getenv('NOTION_INTEGRATION_TOKEN')
+NOTION_DATABASE_ID = os.getenv('NOTION_DATABASE_ID')
+READWISE_ACCESS_TOKEN = os.getenv('READWISE_ACCESS_TOKEN')
+OBSIDIAN_SYNC_GITHUB_TOKEN = os.getenv("OBSIDIAN_SYNC_GITHUB_TOKEN")

@@ -37,3 +37,40 @@
 2025-01-22 17:42:29.574 | INFO     | logger:log:13 - Number of flomo memos to sync: 31
 2025-01-22 17:51:15.258 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
 2025-01-22 17:51:32.013 | INFO     | logger:log:13 - Number of flomo memos to sync: 31
+2025-01-22 18:07:32.550 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-22 18:07:55.064 | INFO     | logger:log:13 - Number of flomo memos to sync: 31
+2025-01-22 18:07:57.923 | INFO     | logger:log:13 - Finished syncing flomo memos to Readwise
+2025-01-22 18:07:57.930 | INFO     | logger:log:13 - Update last sync time: 2025-01-22 18:07:57.927264
+2025-01-22 18:07:57.930 | INFO     | logger:log:13 - Finished
+2025-01-22 18:07:57.930 | INFO     | logger:log:13 - 
+2025-01-23 14:26:47.647 | INFO     | logger:log:13 - Last sync time: 2025-01-22 18:07:57.927264
+2025-01-23 14:29:39.170 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 14:30:33.980 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:11:16.491 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:11:16.491 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:11:49.575 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:11:49.575 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:12:34.352 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:12:34.352 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:13:52.527 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:13:52.527 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:15:27.957 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:15:27.957 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:17:33.689 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:17:33.689 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:20:15.566 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:20:15.566 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:25:17.905 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:25:17.905 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:28:19.273 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:28:19.273 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:30:10.693 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:30:10.693 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:32:29.454 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:32:29.454 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:34:34.531 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:34:34.531 | INFO     | logger:log:13 - Last sync time: 2025-01-10 15:32:00+08:00
+2025-01-23 15:35:28.225 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 15:35:28.225 | INFO     | logger:log:13 - Number of flomo memos to sync: 38
+2025-01-23 15:36:27.238 | INFO     | logger:log:13 - Finished syncing flomo memos to Github
+2025-01-23 15:36:27.238 | INFO     | logger:log:13 - Finished syncing flomo memos to Github

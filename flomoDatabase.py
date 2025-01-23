@@ -1,7 +1,7 @@
 from notion_client import Client
-from datetime import datetime
 from tenacity import retry, wait_exponential, stop_after_attempt
-import pytz
+
+import timeparse
 
 class FlomoDatabase:
 	def __init__(self, api_key, database_id, logger, update_tags=True, skip_tags=['', 'welcome']):
@@ -25,7 +25,7 @@ class FlomoDatabase:
 
 			# Check the last page's last_edited_time
 			if last_sync_time:
-				last_page_created_time = self.parse_created_time(result_list['results'][-1]['created_time'])
+				last_page_created_time = timeparse.parse_created_time(result_list['results'][-1]['created_time'])
 				if last_page_created_time < last_sync_time:
 					break
 
@@ -36,11 +36,10 @@ class FlomoDatabase:
 				break
 		return all_memos
 	
-	@retry(wait=wait_exponential(multiplier=1, min=4, max=10), stop=stop_after_attempt(5))
 	def fetch_flomo_memo(self, page, last_sync_time=None):
 		# Skip pages edited before last_sync_time
-		created_time = self.parse_created_time(page['created_time'])
-		last_edit_time = self.parse_created_time(page['last_edited_time'])
+		created_time = timeparse.parse_created_time(page['created_time'])
+		last_edit_time = timeparse.parse_created_time(page['last_edited_time'])
 		if last_sync_time and created_time < last_sync_time:
 			return None
 
@@ -59,8 +58,11 @@ class FlomoDatabase:
 		# Get content text, flomo memo has only one block
 		page_blocks = self.notion.blocks.children.list(page['id'])
 		text_content = page_blocks['results'][0]['paragraph']['rich_text'][0]['plain_text']
+
+		id = page['id']
 		
 		flomo_memo = {
+			'id': id,
 			'tags':			tags,
 			'flomo_url':	page['properties']['Link']['url'],
 			'created_time': created_time,
@@ -120,17 +122,3 @@ class FlomoDatabase:
 		}
 		# Update the database schema
 		self.notion.databases.update(self.database_id, properties=properties)
-
-	def parse_created_time(self, created_time_str):
-		# 解析 UTC 时间字符串
-		utc_time = datetime.strptime(created_time_str, '%Y-%m-%dT%H:%M:%S.%fZ')
-
-		# 设置 UTC 时区
-		utc_timezone = pytz.utc
-		utc_time = utc_timezone.localize(utc_time)
-
-		# 转换为上海时区
-		shanghai_timezone = pytz.timezone('Asia/Shanghai')
-		shanghai_time = utc_time.astimezone(shanghai_timezone)
-
-		return shanghai_time
