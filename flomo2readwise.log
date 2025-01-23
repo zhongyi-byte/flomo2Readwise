@@ -130,3 +130,15 @@
 2025-01-23 13:11:41.238 | INFO     | logger:log:13 - Finished
 2025-01-23 13:11:41.238 | INFO     | logger:log:13 - 
 2025-01-23 13:11:41.238 | INFO     | logger:log:13 - 
+2025-01-23 13:20:08.674 | INFO     | logger:log:13 - Last sync time: 2025-01-23 21:11:41+08:00
+2025-01-23 13:20:08.674 | INFO     | logger:log:13 - Last sync time: 2025-01-23 21:11:41+08:00
+2025-01-23 13:20:10.776 | INFO     | logger:log:13 - Number of flomo memos to sync: 0
+2025-01-23 13:20:10.776 | INFO     | logger:log:13 - Number of flomo memos to sync: 0
+2025-01-23 13:20:10.776 | INFO     | logger:log:13 - No flomo memos to sync
+2025-01-23 13:20:10.776 | INFO     | logger:log:13 - No flomo memos to sync
+2025-01-23 13:20:10.776 | INFO     | logger:log:13 - Update last sync time: 2025-01-23 21:20:10+08:00
+2025-01-23 13:20:10.776 | INFO     | logger:log:13 - Update last sync time: 2025-01-23 21:20:10+08:00
+2025-01-23 13:20:10.777 | INFO     | logger:log:13 - Finished
+2025-01-23 13:20:10.777 | INFO     | logger:log:13 - Finished
+2025-01-23 13:20:10.777 | INFO     | logger:log:13 - 
+2025-01-23 13:20:10.777 | INFO     | logger:log:13 - 
