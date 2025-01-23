@@ -30,7 +30,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Sync flomo from Notion database to Readwise
+    - name: Sync flomo from Notion database to Github
       run: python starter.py
       env:
         NOTION_INTEGRATION_TOKEN: ${{ secrets.NOTION_INTEGRATION_TOKEN }}
