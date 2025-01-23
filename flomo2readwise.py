@@ -22,7 +22,7 @@ def sync_flomo_to_readwise():
     # Fetch flomo memos
     flomo_database = FlomoDatabase(EnvVariable.NOTION_INTEGRATION_TOKEN, EnvVariable.NOTION_DATABASE_ID, logger)
     flomo_memos = flomo_database.fetch_flomo_memos(last_sync_time=last_sync_time)
-    logger.log('Number of flomo memos to sync:', len(flomo_memos))
+    logger.log('Number of flomo memos to sync to readwise:', len(flomo_memos))
 
     if len(flomo_memos) > 0:
         # Sync flomo memos to Readwise
@@ -35,9 +35,6 @@ def sync_flomo_to_readwise():
     # Update last sync time
     update_time = timeparse.update_last_sync_time()
     logger.log('Update last sync time:', update_time)
-    logger.log('Finished')
+    logger.log('Finished sync readwise')
     logger.log('')
 
-
-if __name__ == '__main__':
-    sync_flomo_to_readwise()

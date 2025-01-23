@@ -7,7 +7,6 @@ import EnvVariable
 import timeparse
 from flomoDatabase import FlomoDatabase
 from logger import loguru_logger
-from readwise import Readwise
 
 OBSIDIAN_SYNC_GITHUB_TOKEN = os.getenv("OBSIDIAN_SYNC_GITHUB_TOKEN")
 

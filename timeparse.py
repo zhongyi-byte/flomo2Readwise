@@ -3,13 +3,9 @@ import os
 import pytz
 from datetime import datetime
 
-from logger import loguru_logger
-
 # Only sync new memos by managing a last sync time
 # Both Github Actions and Notion API are in UTC time zone
 last_sync_time_file = 'last_sync_time.txt'
-# Save all logs to a same file
-logger = loguru_logger('flomo2readwise')
 
 
 def parse_created_time(created_time_str):
