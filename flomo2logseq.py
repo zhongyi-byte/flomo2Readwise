@@ -73,22 +73,45 @@ def convert_to_logseq_content(grouped_memos):
 
 def push_to_github(content):
     """
-    将 Logseq 格式的笔记推送到 GitHub
+    将 Logseq 格式的笔记推送到 GitHub，采用追加而不是覆盖的方式
     """
     for date, date_content in content.items():
-        # 文件路径：确保它指向 `journals` 文件夹，并且使用日期作为文件名
         file_name = f"{date}.md"
         file_path = f"{logseq_directory}/{file_name}"
 
         try:
             # 如果文件不存在，创建文件并推送
             repo.create_file(file_path, f"Add {file_name}", date_content, branch="main")
-            print(f"Successfully added {file_name} to GitHub.")
+            logger.log(f"Successfully added {file_name} to GitHub.")
         except Exception as e:
-            # 如果文件已存在，更新文件内容
-            existing_file = repo.get_contents(file_path, ref="main")
-            repo.update_file(existing_file.path, f"Update {file_name}", date_content, existing_file.sha, branch="main")
-            print(f"Successfully updated {file_name} on GitHub.")
+            # 如果文件已存在，追加新内容
+            try:
+                existing_file = repo.get_contents(file_path, ref="main")
+                # 尝试多种编码方式
+                try:
+                    # 首先尝试 UTF-8
+                    existing_content = existing_file.decoded_content.decode('utf-8')
+                except UnicodeDecodeError:
+                    try:
+                        # 如果 UTF-8 失败，尝试 GB18030（支持所有中文字符）
+                        existing_content = existing_file.decoded_content.decode('gb18030')
+                    except UnicodeDecodeError:
+                        # 最后尝试 GBK
+                        existing_content = existing_file.decoded_content.decode('gbk')
+                
+                # 将新内容追加到现有内容后面
+                updated_content = existing_content + "\n" + date_content
+                
+                repo.update_file(
+                    existing_file.path, 
+                    f"Update {file_name}", 
+                    updated_content, 
+                    existing_file.sha, 
+                    branch="main"
+                )
+                logger.log(f"Successfully appended content to {file_name} on GitHub.")
+            except Exception as e:
+                logger.error(f"Error while updating {file_name}: {str(e)}")
 
 
 def sync_flomo_to_github():
