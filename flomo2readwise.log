@@ -168,3 +168,10 @@
 2025-01-25 11:09:17.781 | INFO     | logger:log:13 - Update last sync time: 2025-01-25 19:09:17+08:00
 2025-01-25 11:09:17.781 | INFO     | logger:log:13 - Finished
 2025-01-25 11:09:17.781 | INFO     | logger:log:13 - 
+2025-01-26 11:08:14.212 | INFO     | logger:log:13 - Last sync time: 2025-01-25 19:09:17+08:00
+2025-01-26 11:08:19.845 | INFO     | logger:log:13 - Number of flomo memos to sync: 7
+2025-01-26 11:08:20.278 | INFO     | logger:log:13 - Successfully added 2025_01_26.md to GitHub.
+2025-01-26 11:08:20.278 | INFO     | logger:log:13 - Finished syncing flomo memos to Github
+2025-01-26 11:08:20.278 | INFO     | logger:log:13 - Update last sync time: 2025-01-26 19:08:20+08:00
+2025-01-26 11:08:20.279 | INFO     | logger:log:13 - Finished
+2025-01-26 11:08:20.279 | INFO     | logger:log:13 - 
